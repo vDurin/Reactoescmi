@@ -5,6 +5,7 @@ import Menu from './Menu';
 import Footer from './Footer';
 
 // Gabriele
+// Giuseppe
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
