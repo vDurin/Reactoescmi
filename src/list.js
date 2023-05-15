@@ -10,7 +10,7 @@ const Lista = ({ users, delete: handleDelete }) => {
 
   return (   
    <div>
-      <Table>
+      <Table variant="dark">
         <thead>
               <tr>
                 <th>ID</th>
