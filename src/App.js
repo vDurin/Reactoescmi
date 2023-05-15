@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 import Menu from './Menu';
 import Footer from './Footer';
 
@@ -55,10 +57,11 @@ const UserList = () => {
       </ul>
 
       {error && (
-        <div className="popup">
-          <p>{error}</p>
+   
+            <Alert   variant='danger'>
+            <p>{error}</p>
           <button onClick={handleCloseError}>Chiudi</button>
-        </div>
+          </Alert>
       )}
 
     <Footer />
