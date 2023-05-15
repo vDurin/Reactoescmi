@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import './App.css';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import Pagination from 'react-bootstrap/Pagination';
+
 
 
 const Lista = ({ users, delete: handleDelete }) => {
@@ -15,11 +17,26 @@ const Lista = ({ users, delete: handleDelete }) => {
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(users.length / recordsPerPage);
+
+
+
+const maxPageNumbers = 3; // numero massimo di numeri di pagina da visualizzare
+const middlePageNumber = Math.floor(maxPageNumbers / 2); // numero di pagina centrale
+let startPageNumber = currentPage - middlePageNumber; // numero di pagina di partenza
+startPageNumber = startPageNumber < 1 ? 1 : startPageNumber; // assicurarsi che il numero di pagina di partenza non sia inferiore a 1
+let endPageNumber = startPageNumber + maxPageNumbers - 1; // numero di pagina di fine
+endPageNumber = endPageNumber > totalPages ? totalPages : endPageNumber; // assicurarsi che il numero di pagina di fine non sia superiore al numero totale di pagine
+const pageNumbers = Array.from({ length: endPageNumber - startPageNumber + 1 }, (_, index) => startPageNumber + index);
+
+
+
+
+
 
   
 
-  const totalPages = Math.ceil(users.length / recordsPerPage);
-  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+ 
   
 
   const handlePageChange = (page) => {
@@ -65,13 +82,13 @@ const Lista = ({ users, delete: handleDelete }) => {
       <Pagination>
  
       <Pagination.Prev  onClick={handlePreviousPage}/>
-      <Pagination.Item>{currentPage}</Pagination.Item>
-      <Pagination.Ellipsis />     
+      <Pagination.Item>Pagina corrente:{currentPage}</Pagination.Item>
+          
       {pageNumbers.map((page) => (
-      <Pagination.Item  key={page}  onClick={() => handlePageChange(page)} disabled={ currentPage === page  } >{page}</Pagination.Item>
+      <Pagination.Item  key={page}  onClick={() => handlePageChange(page)} disabled={ currentPage === page  }  className={currentPage === page ? "current-page" : ""}>{page}</Pagination.Item>
         ))}
-      <Pagination.Ellipsis />
-      <Pagination.Item>{totalPages}</Pagination.Item>
+      <Pagination.Ellipsis /> 
+      <Pagination.Item>Totale Pagine:{totalPages}</Pagination.Item>
       <Pagination.Next onClick={handleNextPage} />
       
       </Pagination>

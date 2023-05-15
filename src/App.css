@@ -48,3 +48,10 @@
 button{
   margin: 10px !important;
 }
+
+.current-page{
+  .page-link {
+    background-color: red !important;
+    color: white !important;
+  }
+}
