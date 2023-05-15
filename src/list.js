@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import Pagination from 'react-bootstrap/Pagination';
 
 
 const Lista = ({ users, delete: handleDelete }) => {
@@ -14,6 +15,16 @@ const Lista = ({ users, delete: handleDelete }) => {
   const indexOfLastRecord = currentPage * recordsPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
   const currentRecords = users.slice(indexOfFirstRecord, indexOfLastRecord);
+
+  
+
+  const totalPages = Math.ceil(users.length / recordsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
+  
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
 
   const handlePreviousPage = () => {
     if (currentPage > 1) {
@@ -51,8 +62,20 @@ const Lista = ({ users, delete: handleDelete }) => {
         </tbody>
       </Table>
       <div>
-        <button onClick={handlePreviousPage}>Previous</button>
-        <button onClick={handleNextPage}>Next</button>
+      <Pagination>
+ 
+      <Pagination.Prev  onClick={handlePreviousPage}/>
+      <Pagination.Item>{currentPage}</Pagination.Item>
+      <Pagination.Ellipsis />     
+      {pageNumbers.map((page) => (
+      <Pagination.Item  key={page}  onClick={() => handlePageChange(page)} disabled={ currentPage === page  } >{page}</Pagination.Item>
+        ))}
+      <Pagination.Ellipsis />
+      <Pagination.Item>{totalPages}</Pagination.Item>
+      <Pagination.Next onClick={handleNextPage} />
+      
+      </Pagination>
+ 
       </div>
     </div>
   ); 
