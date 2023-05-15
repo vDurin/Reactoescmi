@@ -60,7 +60,7 @@ const UserList = () => {
    
             <Alert   variant='danger'>
             <p>{error}</p>
-          <button onClick={handleCloseError}>Chiudi</button>
+          <button class="btn btn-danger" onClick={handleCloseError}>Chiudi</button>
           </Alert>
       )}
 
