@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Form, Button } from 'react-bootstrap';
 import Menu from './Menu';
 import Footer from './Footer';
+import Lista from './list';
 
 
 const UserList = () => {
@@ -45,14 +46,7 @@ const UserList = () => {
   return (
     <div>
     <Menu />
-    <h1>User List</h1>
-      <ul>
-        {users.map(user => (
-          <li key={user.id}> {user.id} - {user.email} - {user.name} 
-           <button onClick={() => handleDelete(user.id)}>Elimina</button>
-          </li>
-        ))}
-      </ul>
+    <Lista users={users} delete={handleDelete} />
 
       {error && (
         <div className="popup">
