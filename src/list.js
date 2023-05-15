@@ -1,6 +1,6 @@
 import React from 'react';
 import Table from 'react-bootstrap/Table';
-
+import Button from 'react-bootstrap/Button';
 
 const Lista = ({ users, delete: handleDelete }) => {
 
@@ -25,7 +25,7 @@ const Lista = ({ users, delete: handleDelete }) => {
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td><button onClick={() => handleClickDelete(user.id)}>Elimina</button></td>
+                <td><Button variant="outline-danger" onClick={() => handleClickDelete(user.id)}> Elimina </Button></td>
               </tr>
           ))}    
         </tbody>
