@@ -1,5 +1,5 @@
 import React from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
+import Table from 'react-bootstrap/Table';
 
 
 const Lista = ({ users, delete: handleDelete }) => {
@@ -9,18 +9,28 @@ const Lista = ({ users, delete: handleDelete }) => {
   };
 
   return (   
-      <ListGroup>
-        <ListGroup.Item>
-        <h1>User List</h1>
-        <ul>
+   <div>
+      <Table>
+        <thead>
+              <tr>
+                <th>ID</th>
+                <th>NAME</th>
+                <th>EMAIL</th>
+                <th>COMMAND</th>
+              </tr>
+        </thead>
+        <tbody>
           {users.map(user => (
-            <li key={user.id}> {user.id} - {user.email} - {user.name} 
-            <button onClick={() => handleClickDelete(user.id)}>Elimina</button>
-            </li>
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td><button onClick={() => handleClickDelete(user.id)}>Elimina</button></td>
+              </tr>
           ))}    
-        </ul>
-        </ListGroup.Item>
-      </ListGroup>
+        </tbody>
+      </Table>
+    </div>
   ); 
 };
 
