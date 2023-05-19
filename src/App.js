@@ -16,7 +16,7 @@ const Home = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://6466255a9c09d77a62fe6448.mockapi.io/products')
+    fetch('https://645e112a12e0a87ac0e6b4cf.mockapi.io/users')
       .then(response => response.json())
       .then(data => setUsers(data))
       .catch(error => console.log(error));
